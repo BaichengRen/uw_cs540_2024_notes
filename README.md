@@ -21,3 +21,16 @@ Lecture 1：
 
 # Maximum Likelihood Estimation
   这个是考虑抽样中的概率，P(wt) 即为wt出现的频率， 如 a a a b b 中样本中，P（a) = 3/5
+  
+# Bigram Model
+  与之前的类似 P（wt | wt-1, wt-2, wt-3 .... w1,w0) = P（wt | wt-1),新的单词只需要考虑上一个单词 注意计算 Maximum Likelihood时也是 wt在wt-1之后出现的次数/wt-1 出现的次数
+
+# Transition Matrix
+  把上一个Bigram的概率写入一个matrix里 P（j|i）= 在matrix中 row i column x 的值
+
+# Trigram Model
+  道理同上，不过值得注意的是Laplace smoothing
+  Laplace smoothing指的是给所有可能性都给予一些很小的概率使他们不为0
+  比如说在aaabb 中，unigram, 有 3个a,2个b, 0个c a的概率为3/5 c的概率为0。 这种情况下我们下一个单词永远不可能是c。但是我们要保留这种可能性，就好比说“吃”这个单词后面很少出现“21号混凝土”，但是不是不可能。所以在计算的时候要修正一下
+  这引入了Laplace smoothing，我们考虑4个a,3个b, 1个c，这样虽然c的概率很小1/8,但是还是保留了一定的概率
+  
